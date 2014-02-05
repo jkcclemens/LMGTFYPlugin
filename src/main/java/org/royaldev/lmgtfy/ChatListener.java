@@ -12,10 +12,12 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.regex.Pattern;
 
 class ChatListener implements Listener {
 
     private final LMGTFYPlugin plugin;
+    private final Pattern urlPattern = Pattern.compile("(?i)\\b((?:[a-z][\\w-]+:(?:/{1,3}|[a-z0-9%])|www\\d{0,3}[.]|[a-z0-9.\\-]+[.][a-z]{2,4}/)(?:[^\\s()<>]+|\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\))+(?:\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\)|[^\\s`!()\\[\\]{};:'\".,<>?«»“”‘’]))");
 
     ChatListener(LMGTFYPlugin instance) {
         this.plugin = instance;
@@ -59,11 +61,7 @@ class ChatListener implements Listener {
         if (!e.getPlayer().hasPermission("lmgtfy.autoshorten")) return;
         final String message = e.getMessage();
         for (final String word : e.getMessage().split(" ")) {
-            try {
-                new URI(word);
-            } catch (URISyntaxException ex) {
-                continue;
-            }
+            if (!this.urlPattern.matcher(word).matches()) continue;
             String shortURL;
             try {
                 shortURL = this.shortenURL(word);
