@@ -1,0 +1,14 @@
+name: LMGTFY
+version: ${pluginversion}
+author: jkcclemens
+description: Creates LMGTFY links on the fly.
+
+commands:
+  lmgtfy:
+    description: Sends an LMGTFY link.
+    usage: <command> (player) [query]
+
+permissions:
+  lmgtfy.lmgtfy:
+    description: Allows /lmgtfy
+    default: op

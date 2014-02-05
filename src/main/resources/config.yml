@@ -1,0 +1,7 @@
+# Shorten all links sent in chat?
+shorten:
+  enabled: true
+  # The URL schemas to shorten. Please use all lowercase.
+  supported_schemas:
+    - http
+    - https
