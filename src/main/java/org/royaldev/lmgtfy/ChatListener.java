@@ -71,6 +71,13 @@ class ChatListener implements Listener {
             } catch (IOException ex) {
                 shortURL = word;
             }
+            if (!this.plugin.getConfig().getBoolean("shorten.show_schema", true)) {
+                try {
+                    final URI uri = new URI(shortURL);
+                    if (uri.getScheme() != null)
+                        shortURL = uri.toString().substring(uri.getScheme().length() + 3); // "://" = 3
+                } catch (URISyntaxException ignored) {}
+            }
             final int index = message.indexOf(word);
             e.setMessage(message.substring(0, index) + shortURL + message.substring(index + word.length()));
         }

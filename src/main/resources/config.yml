@@ -1,3 +1,5 @@
 # Shorten all links sent in chat?
 shorten:
   enabled: true
+  # Should shortened links show "http://"
+  show_schema: true
