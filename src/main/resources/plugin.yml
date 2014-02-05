@@ -1,5 +1,6 @@
 name: LMGTFY
 version: ${pluginversion}
+main: org.royaldev.lmgtfy.LMGTFYPlugin
 author: jkcclemens
 description: Creates LMGTFY links on the fly.
 
