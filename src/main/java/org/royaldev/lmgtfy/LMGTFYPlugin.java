@@ -13,7 +13,7 @@ public class LMGTFYPlugin extends JavaPlugin {
         this.reloadConfig();
 
         final PluginManager pm = this.getServer().getPluginManager();
-        pm.registerEvents(new ChatListener(), this);
+        pm.registerEvents(new ChatListener(this), this);
 
         this.getCommand("lmgtfy").setExecutor(new LMGTFYCommand(this));
     }
