@@ -67,6 +67,7 @@ class ChatListener implements Listener {
             String shortURL;
             try {
                 shortURL = this.shortenURL(word);
+                if (shortURL.startsWith("Error:")) shortURL = word;
             } catch (IOException ex) {
                 shortURL = word;
             }
