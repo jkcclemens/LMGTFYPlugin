@@ -56,6 +56,7 @@ class ChatListener implements Listener {
     @EventHandler
     public void onChat(AsyncPlayerChatEvent e) {
         if (!this.plugin.getConfig().getBoolean("shorten.enabled", true)) return;
+        if (!e.getPlayer().hasPermission("lmgtfy.autoshorten")) return;
         final String message = e.getMessage();
         for (final String word : e.getMessage().split(" ")) {
             try {

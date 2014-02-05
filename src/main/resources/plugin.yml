@@ -13,3 +13,6 @@ permissions:
   lmgtfy.lmgtfy:
     description: Allows /lmgtfy
     default: op
+  lmgtfy.autoshorten:
+    description: Allows for links to be shortened automatically in chat
+    default: false
