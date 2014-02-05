@@ -36,11 +36,7 @@ class LMGTFYCommand implements CommandExecutor {
                 cs.sendMessage(ChatColor.RED + "You don't have permission for that!");
                 return true;
             }
-            if (!(cs instanceof Player)) {
-                cs.sendMessage(ChatColor.RED + "This command is only available to players.");
-                return true;
-            }
-            final Player p = (Player) cs;
+            final Player p = (cs instanceof Player) ? (Player) cs : null;
             if (args.length < 1) {
                 cs.sendMessage(cmd.getDescription());
                 return false;
@@ -56,7 +52,9 @@ class LMGTFYCommand implements CommandExecutor {
                 cs.sendMessage(ChatColor.RED + "An error occurred and has been logged to the console.");
                 return true;
             }
-            p.chat(((t == null) ? "" : t.getName() + ": ") + lmgtfy);
+            final String message = ((t == null) ? "" : t.getName() + ": ") + lmgtfy;
+            if (p == null) this.plugin.getServer().dispatchCommand(cs, "say " + message);
+            else p.chat(message);
             return true;
         }
         return false;
