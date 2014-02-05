@@ -12,7 +12,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.List;
 
 class ChatListener implements Listener {
 
@@ -59,14 +58,11 @@ class ChatListener implements Listener {
         if (!this.plugin.getConfig().getBoolean("shorten.enabled", true)) return;
         final String message = e.getMessage();
         for (final String word : e.getMessage().split(" ")) {
-            final URI uri;
             try {
-                uri = new URI(word);
+                new URI(word);
             } catch (URISyntaxException ex) {
                 continue;
             }
-            final List<String> supportSchemas = this.plugin.getConfig().getStringList("shorten.supported_schemas");
-            if (!supportSchemas.contains(uri.getScheme().toLowerCase())) continue;
             String shortURL;
             try {
                 shortURL = this.shortenURL(word);
